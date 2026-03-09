@@ -6061,10 +6061,10 @@ function updateTopicAddAllRow() {
 
 
 function renderSearchItem(t, added) {
-  const safeName = t.term.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  const safeAttr = t.term.replace(/"/g, '&quot;');
   const clickCard = added ? '' : "teacherAddFromItem(this)";
   const clickBtn  = added ? '' : "event.stopPropagation();teacherAddFromItem(this.closest('.setup-search-item'))";
-  return '<div class="setup-search-item' + (added ? ' already-added' : '') + '" data-term="' + safeName + '" onclick="' + clickCard + '">'
+  return '<div class="setup-search-item' + (added ? ' already-added' : '') + '" data-term="' + safeAttr + '" onclick="' + clickCard + '">'
     + '<div>'
     + '<div class="setup-search-item-name">' + t.term + '</div>'
     + '<div class="setup-search-item-cat">' + t.category + '</div>'
@@ -6494,8 +6494,8 @@ function printTopicAddAll(names) {
 // ── Shared helpers ──
 function renderPrintItem(t) {
   const sel = printSelected.has(t.term);
-  const safe = t.term.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-  return '<div class="print-term-item' + (sel ? ' selected' : '') + '" data-term="' + safe + '" onclick="togglePrintTermEl(this)">'
+  const safeAttr = t.term.replace(/"/g, '&quot;');
+  return '<div class="print-term-item' + (sel ? ' selected' : '') + '" data-term="' + safeAttr + '" onclick="togglePrintTermEl(this)">'
     + '<div class="print-term-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>'
     + '<div class="print-term-info">'
     + '<div class="print-term-info-name">' + t.term + '</div>'
@@ -6507,15 +6507,13 @@ function togglePrintTermEl(el) {
   const name = el.getAttribute('data-term');
   if (printSelected.has(name)) {
     printSelected.delete(name);
-    el.classList.remove('selected');
   } else {
     printSelected.add(name);
-    el.classList.add('selected');
   }
-  // Sync across all panels
-  document.querySelectorAll('[data-term="' + name.replace(/\\/g,'\\\\').replace(/"/g,'\\"') + '"]').forEach(other => {
-    other.classList.toggle('selected', printSelected.has(name));
-  });
+  // Re-render all visible panels so selected state stays consistent
+  if (document.getElementById('ppanel-browse').style.display !== 'none') renderPrintSelector();
+  if (document.getElementById('ppanel-search').style.display !== 'none') renderPrintSearch();
+  if (document.getElementById('ppanel-topic').style.display !== 'none') runPrintTopicSearch();
   updatePrintCount();
 }
 
