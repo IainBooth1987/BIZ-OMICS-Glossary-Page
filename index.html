@@ -1505,7 +1505,7 @@ body::before {
 <body>
 <div class="app">
   <div class="az-nav" id="az-nav"></div>
-  <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
   <header class="header">
     <div class="brand">
       <div class="brand-icon">B</div>
@@ -1515,19 +1515,19 @@ body::before {
       </div>
     </div>
     <div class="mode-toggle">
-      <button class="mode-btn active" onclick="setMode('glossary')" id="btn-glossary">
+      <button class="mode-btn active" id="btn-glossary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         Glossary
       </button>
-      <button class="mode-btn" onclick="setMode('flashcard')" id="btn-flashcard">
+      <button class="mode-btn" id="btn-flashcard">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
         Flashcards
       </button>
-      <button class="mode-btn" onclick="setMode('teacher')" id="btn-teacher">
+      <button class="mode-btn" id="btn-teacher">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Teacher
       </button>
-      <button class="mode-btn" onclick="setMode('print')" id="btn-print">
+      <button class="mode-btn" id="btn-print">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Print
       </button>
@@ -1544,7 +1544,7 @@ body::before {
     <div class="search-section">
       <div class="search-box">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search key terms..." oninput="filterTerms()" aria-label="Search economics terms">
+        <input type="text" id="search-input" placeholder="Search key terms..." aria-label="Search economics terms">
       </div>
       <div class="filter-row" id="filter-row"></div>
     </div>
@@ -1561,16 +1561,16 @@ body::before {
           Card <strong id="fc-current">1</strong> of <strong id="fc-total">0</strong> <span id="fc-sr-badge" class="sr-badge new" style="margin-left:8px">🆕 New</span>
         </div>
         <div class="fc-actions">
-          <button class="fc-btn" onclick="shuffleCards()">
+          <button class="fc-btn" data-action="shuffle">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
             Shuffle
           </button>
-          <button class="fc-btn" onclick="resetScore()">Reset Progress</button>
+          <button class="fc-btn" data-action="reset">Reset Progress</button>
         </div>
       </div>
 
       <div class="flashcard-container">
-        <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard" id="flashcard">
           <div class="fc-face fc-front">
             <div class="fc-front-label">Key Term</div>
             <div class="fc-front-term" id="fc-term-name"></div>
@@ -1598,14 +1598,14 @@ body::before {
       </div>
 
       <div class="fc-nav">
-        <button class="fc-nav-btn" onclick="prevCard()" aria-label="Previous card">
+        <button class="fc-nav-btn" data-action="prev" aria-label="Previous card">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="fc-mark-btns">
-          <button class="fc-mark know" onclick="markCard('know')">✓ Know It</button>
-          <button class="fc-mark review" onclick="markCard('review')">✗ Review</button>
+          <button class="fc-mark know">✓ Know It</button>
+          <button class="fc-mark review">✗ Review</button>
         </div>
-        <button class="fc-nav-btn" onclick="nextCard()" aria-label="Next card">
+        <button class="fc-nav-btn" data-action="next" aria-label="Next card">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
@@ -1634,11 +1634,11 @@ body::before {
 
           <!-- Tab switcher -->
           <div class="search-tabs">
-            <button class="search-tab active" id="tab-manual" onclick="switchSearchTab('manual')">
+            <button class="search-tab active" id="tab-manual">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
               Manual search
             </button>
-            <button class="search-tab" id="tab-topic" onclick="switchSearchTab('topic')">
+            <button class="search-tab" id="tab-topic">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
               Topic search
             </button>
@@ -1649,9 +1649,9 @@ body::before {
             <div class="setup-search-row">
               <div class="setup-search-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                <input type="text" id="teacher-search" placeholder="Search for a term to add…" oninput="teacherSearchTerms()" autocomplete="off">
+                <input type="text" id="teacher-search" placeholder="Search for a term to add…" autocomplete="off">
               </div>
-              <select id="teacher-setup-cat" class="teacher-select" onchange="teacherSearchTerms()">
+              <select id="teacher-setup-cat" class="teacher-select">
                 <option value="All">All Categories</option>
               </select>
             </div>
@@ -1663,10 +1663,9 @@ body::before {
             <div class="topic-search-row">
               <div class="setup-search-wrap" style="flex:1">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                <input type="text" id="topic-input" placeholder="e.g. behavioural economics, market failure, inflation…" autocomplete="off"
-                  oninput="runTopicSearch()" onkeydown="if(event.key==='Enter') runTopicSearch()">
+                <input type="text" id="topic-input" placeholder="e.g. behavioural economics, market failure, inflation…" autocomplete="off">
               </div>
-              <button class="topic-search-btn" onclick="runTopicSearch()" id="topic-search-btn">
+              <button class="topic-search-btn" id="topic-search-btn">
                 Search
               </button>
             </div>
@@ -1676,10 +1675,10 @@ body::before {
 
           <div class="setup-quick-row">
             <span class="setup-quick-label">Quick add:</span>
-            <button class="setup-quick-btn" onclick="teacherQuickAdd('Macroeconomics')">All Macro</button>
-            <button class="setup-quick-btn" onclick="teacherQuickAdd('Microeconomics')">All Micro</button>
-            <button class="setup-quick-btn" onclick="teacherQuickAdd('International Economics')">All International</button>
-            <button class="setup-quick-btn danger" onclick="teacherClearQueue()">Clear all</button>
+            <button class="setup-quick-btn" data-action="quick-macro">All Macro</button>
+            <button class="setup-quick-btn" data-action="quick-micro">All Micro</button>
+            <button class="setup-quick-btn" data-action="quick-intl">All International</button>
+            <button class="setup-quick-btn danger" data-action="clear-queue">Clear all</button>
           </div>
         </div>
 
@@ -1705,15 +1704,15 @@ body::before {
               <div class="setup-option-title">Question direction</div>
               <div class="setup-option-desc">What are students shown?</div>
               <div class="setup-direction-btns">
-                <button class="setup-dir-btn active" id="dir-term" onclick="setQuizDirection('term')">
+                <button class="setup-dir-btn active" id="dir-term">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                   Key Term → Write definition
                 </button>
-                <button class="setup-dir-btn" id="dir-def" onclick="setQuizDirection('definition')">
+                <button class="setup-dir-btn" id="dir-def">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                   Definition shown → Guess the term
                 </button>
-                <button class="setup-dir-btn" id="dir-mix" onclick="setQuizDirection('mixed')">
+                <button class="setup-dir-btn" id="dir-mix">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
                   Mixed (random each round)
                 </button>
@@ -1723,24 +1722,24 @@ body::before {
               <div class="setup-option-title">Definition shown</div>
               <div class="setup-option-desc">Which definition type to display?</div>
               <div class="setup-deftype-btns">
-                <button class="setup-deftype-btn active" id="deftype-technical" onclick="setDefType('technical')">Technical</button>
-                <button class="setup-deftype-btn" id="deftype-simple" onclick="setDefType('simple')">Simple</button>
-                <button class="setup-deftype-btn" id="deftype-both" onclick="setDefType('both')">Both</button>
+                <button class="setup-deftype-btn active" id="deftype-technical">Technical</button>
+                <button class="setup-deftype-btn" id="deftype-simple">Simple</button>
+                <button class="setup-deftype-btn" id="deftype-both">Both</button>
               </div>
             </div>
             <div class="setup-option-card">
               <div class="setup-option-title">Order</div>
               <div class="setup-option-desc">How to sequence the queue?</div>
               <div class="setup-deftype-btns">
-                <button class="setup-deftype-btn active" id="order-random" onclick="setQuizOrder('random')">Random</button>
-                <button class="setup-deftype-btn" id="order-sequential" onclick="setQuizOrder('sequential')">In order</button>
+                <button class="setup-deftype-btn active" id="order-random">Random</button>
+                <button class="setup-deftype-btn" id="order-sequential">In order</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="setup-launch-row">
-          <button class="teacher-btn primary large" onclick="teacherLaunchQuiz()" id="teacher-launch-btn" disabled>
+          <button class="teacher-btn primary large" id="teacher-launch-btn" disabled>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             Launch Quiz
           </button>
@@ -1759,7 +1758,7 @@ body::before {
             <div class="quiz-progress-pill">
               <span id="quiz-current-num">1</span> / <span id="quiz-total-num">0</span>
             </div>
-            <button class="teacher-btn ghost small" onclick="teacherBackToSetup()">
+            <button class="teacher-btn ghost small" data-action="back-to-setup">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
               Edit queue
             </button>
@@ -1779,7 +1778,7 @@ body::before {
 
           <!-- Reveal button -->
           <div class="teacher-reveal-area" id="teacher-reveal-area" style="display:none">
-            <button class="teacher-reveal-btn" onclick="teacherReveal()">
+            <button class="teacher-reveal-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
               Reveal Answer
             </button>
@@ -1801,11 +1800,11 @@ body::before {
               <div class="teacher-related-tags" id="teacher-related-tags"></div>
             </div>
             <div class="teacher-next-row">
-              <button class="teacher-btn ghost" onclick="teacherBackToSetup()">
+              <button class="teacher-btn ghost" data-action="back-to-setup">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
                 Back to setup
               </button>
-              <button class="teacher-btn primary large" onclick="teacherNextTerm()" id="teacher-next-btn">
+              <button class="teacher-btn primary large" id="teacher-next-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
                 Next Term
               </button>
@@ -1817,6 +1816,17 @@ body::before {
         <div class="teacher-history" id="teacher-history-wrap" style="display:none">
           <div class="teacher-history-label">Terms done this session:</div>
           <div class="teacher-history-list" id="teacher-history-list"></div>
+        </div>
+
+        <!-- End screen overlay -->
+        <div id="teacher-end-screen" style="display:none;padding:60px 40px;text-align:center">
+          <div style="font-size:48px;margin-bottom:16px">🎉</div>
+          <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:10px">Quiz Complete!</div>
+          <div id="teacher-end-count" style="font-size:15px;color:var(--text-muted);margin-bottom:28px"></div>
+          <button class="teacher-btn primary large" data-action="back-to-setup">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Setup
+          </button>
         </div>
       </div>
 
@@ -1835,17 +1845,17 @@ body::before {
       <!-- Print options bar -->
       <div class="print-toolbar">
         <div class="print-toolbar-left">
-          <button class="print-tool-btn" onclick="printSelectAll()">Select All</button>
-          <button class="print-tool-btn" onclick="printSelectNone()">Deselect All</button>
+          <button class="print-tool-btn" data-action="print-select-all">Select All</button>
+          <button class="print-tool-btn" data-action="print-select-none">Deselect All</button>
         </div>
         <div class="print-toolbar-right">
           <div class="print-option-group">
             <label class="print-option-label">Include:</label>
-            <label class="print-checkbox-label"><input type="checkbox" id="print-include-technical" checked onchange="updatePrintPreview()"> Technical def</label>
-            <label class="print-checkbox-label"><input type="checkbox" id="print-include-simple" checked onchange="updatePrintPreview()"> Simple def</label>
-            <label class="print-checkbox-label"><input type="checkbox" id="print-include-usage" onchange="updatePrintPreview()"> Usage example</label>
+            <label class="print-checkbox-label"><input type="checkbox" id="print-include-technical" checked> Technical def</label>
+            <label class="print-checkbox-label"><input type="checkbox" id="print-include-simple" checked> Simple def</label>
+            <label class="print-checkbox-label"><input type="checkbox" id="print-include-usage"> Usage example</label>
           </div>
-          <button class="print-go-btn" onclick="doPrint()">
+          <button class="print-go-btn" data-action="do-print">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
             Print / Save PDF
           </button>
@@ -1856,15 +1866,15 @@ body::before {
       <div class="print-select-section">
         <!-- Tabs -->
         <div class="search-tabs" style="margin-bottom:14px">
-          <button class="search-tab active" id="ptab-browse" onclick="switchPrintTab('browse')">
+          <button class="search-tab active" id="ptab-browse">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
             Browse all
           </button>
-          <button class="search-tab" id="ptab-search" onclick="switchPrintTab('search')">
+          <button class="search-tab" id="ptab-search">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
             Search
           </button>
-          <button class="search-tab" id="ptab-topic" onclick="switchPrintTab('topic')">
+          <button class="search-tab" id="ptab-topic">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Topic
           </button>
@@ -1874,12 +1884,12 @@ body::before {
         <div id="ppanel-browse" class="search-panel">
           <div class="print-selection-bar">
             <span id="print-selected-count">0 terms selected</span>
-            <select id="print-category-filter" class="teacher-select" onchange="printFilterCategory()">
+            <select id="print-category-filter" class="teacher-select">
               <option value="All">All Categories</option>
             </select>
-            <button class="print-tool-btn ghost" onclick="printQuickSelect('Macroeconomics')">+ All Macro</button>
-            <button class="print-tool-btn ghost" onclick="printQuickSelect('Microeconomics')">+ All Micro</button>
-            <button class="print-tool-btn ghost" onclick="printQuickSelect('International Economics')">+ All International</button>
+            <button class="print-tool-btn ghost" data-action="print-quick-macro">+ All Macro</button>
+            <button class="print-tool-btn ghost" data-action="print-quick-micro">+ All Micro</button>
+            <button class="print-tool-btn ghost" data-action="print-quick-intl">+ All International</button>
           </div>
           <div class="print-term-selector" id="print-term-selector"></div>
         </div>
@@ -1891,7 +1901,7 @@ body::before {
           </div>
           <div class="setup-search-wrap" style="margin-bottom:12px">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-            <input type="text" id="print-search-input" placeholder="Search for a term by name…" oninput="renderPrintSearch()" autocomplete="off">
+            <input type="text" id="print-search-input" placeholder="Search for a term by name…" autocomplete="off">
           </div>
           <div class="print-term-selector" id="print-search-selector"></div>
         </div>
@@ -1904,10 +1914,9 @@ body::before {
           <div class="topic-search-row">
             <div class="setup-search-wrap" style="flex:1">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-              <input type="text" id="print-topic-input" placeholder="e.g. behavioural economics, market failure, inflation…" autocomplete="off"
-                oninput="runPrintTopicSearch()">
+              <input type="text" id="print-topic-input" placeholder="e.g. behavioural economics, market failure, inflation…" autocomplete="off">
             </div>
-            <button class="topic-search-btn" onclick="runPrintTopicSearch()">Search</button>
+            <button class="topic-search-btn" data-action="run-print-topic">Search</button>
           </div>
           <div id="print-topic-status" class="topic-status" style="display:none"></div>
           <div class="print-term-selector" id="print-topic-selector"></div>
@@ -5772,13 +5781,134 @@ function termExists(tag) {
 // ==================== INIT ====================
 function init() {
   buildFilters(); updateStats(); renderGlossary(); updateFlashcard(); buildAZNav(); initBackToTop();
+  initGlobalDelegation();
+}
+
+function initGlobalDelegation() {
+  try {
+
+  // ── Back to top ──
+  document.getElementById('back-to-top').addEventListener('click', () =>
+    window.scrollTo({top:0,behavior:'smooth'}));
+
+  // ── Mode buttons ──
+  document.getElementById('btn-glossary').addEventListener('click', () => setMode('glossary'));
+  document.getElementById('btn-flashcard').addEventListener('click', () => setMode('flashcard'));
+  document.getElementById('btn-teacher').addEventListener('click', () => setMode('teacher'));
+  document.getElementById('btn-print').addEventListener('click', () => setMode('print'));
+
+  // ── Search input ──
+  document.getElementById('search-input').addEventListener('input', filterTerms);
+
+  // ── A-Z nav ──
+  document.getElementById('az-nav').addEventListener('click', e => {
+    const a = e.target.closest('a[data-letter]');
+    if (a) { e.preventDefault(); jumpToLetter(e, a.dataset.letter); }
+  });
+
+  // ── Filter chips ──
+  document.getElementById('filter-row').addEventListener('click', e => {
+    const btn = e.target.closest('[data-cat]');
+    if (btn) setCategory(btn.dataset.cat);
+  });
+
+  // ── Glossary grid — card expand + related tags ──
+  document.getElementById('glossary-grid').addEventListener('click', e => {
+    const related = e.target.closest('[data-related]');
+    if (related) { e.stopPropagation(); searchRelated(related.dataset.related); return; }
+    const card = e.target.closest('[data-expand]');
+    if (card) toggleCard(card);
+  });
+
+  // ── Flashcard ──
+  document.getElementById('flashcard').addEventListener('click', flipCard);
+  document.querySelector('.fc-btn[data-action="shuffle"]').addEventListener('click', shuffleCards);
+  document.querySelector('.fc-btn[data-action="reset"]').addEventListener('click', resetScore);
+  document.querySelector('.fc-nav-btn[data-action="prev"]').addEventListener('click', prevCard);
+  document.querySelector('.fc-nav-btn[data-action="next"]').addEventListener('click', nextCard);
+  document.querySelector('.fc-mark.know').addEventListener('click', () => markCard('know'));
+  document.querySelector('.fc-mark.review').addEventListener('click', () => markCard('review'));
+
+  // ── Teacher setup ──
+  document.getElementById('tab-manual').addEventListener('click', () => switchSearchTab('manual'));
+  document.getElementById('tab-topic').addEventListener('click', () => switchSearchTab('topic'));
+  document.getElementById('teacher-search').addEventListener('input', teacherSearchTerms);
+  document.getElementById('teacher-setup-cat').addEventListener('change', teacherSearchTerms);
+  document.getElementById('topic-search-btn').addEventListener('click', runTopicSearch);
+  document.getElementById('topic-input').addEventListener('input', runTopicSearch);
+  document.getElementById('topic-input').addEventListener('keydown', e => { if(e.key==='Enter') runTopicSearch(); });
+  document.querySelector('[data-action="quick-macro"]').addEventListener('click', () => teacherQuickAdd('Macroeconomics'));
+  document.querySelector('[data-action="quick-micro"]').addEventListener('click', () => teacherQuickAdd('Microeconomics'));
+  document.querySelector('[data-action="quick-intl"]').addEventListener('click', () => teacherQuickAdd('International Economics'));
+  document.querySelector('[data-action="clear-queue"]').addEventListener('click', teacherClearQueue);
+
+  // ── Quiz direction / def type / order ──
+  document.getElementById('dir-term').addEventListener('click', () => setQuizDirection('term'));
+  document.getElementById('dir-def').addEventListener('click', () => setQuizDirection('definition'));
+  document.getElementById('dir-mix').addEventListener('click', () => setQuizDirection('mixed'));
+  document.getElementById('deftype-technical').addEventListener('click', () => setDefType('technical'));
+  document.getElementById('deftype-simple').addEventListener('click', () => setDefType('simple'));
+  document.getElementById('deftype-both').addEventListener('click', () => setDefType('both'));
+  document.getElementById('order-random').addEventListener('click', () => setQuizOrder('random'));
+  document.getElementById('order-sequential').addEventListener('click', () => setQuizOrder('sequential'));
+  document.getElementById('teacher-launch-btn').addEventListener('click', teacherLaunchQuiz);
+
+  // ── Quiz phase ──
+  document.getElementById('teacher-queue').addEventListener('click', e => {
+    const btn = e.target.closest('[data-remove-term]');
+    if (btn) teacherRemoveTerm(btn.dataset.removeTerm);
+  });
+  document.querySelectorAll('[data-action="back-to-setup"]').forEach(el =>
+    el.addEventListener('click', teacherBackToSetup));
+  document.getElementById('teacher-end-screen').addEventListener('click', e => {
+    if (e.target.closest('[data-action="back-to-setup"]')) teacherBackToSetup();
+  });
+  document.getElementById('teacher-next-btn').addEventListener('click', teacherNextTerm);
+  document.querySelector('.teacher-reveal-btn').addEventListener('click', teacherReveal);
+
+  // ── Teacher topic add-all ──
+  document.getElementById('topic-search-results').addEventListener('click', e => {
+    if (e.target.closest('[data-topic-add-all]'))
+      topicAddAll(document.getElementById('topic-search-results')._notAdded || []);
+  });
+
+  // ── Print mode ──
+  document.querySelector('[data-action="print-select-all"]').addEventListener('click', printSelectAll);
+  document.querySelector('[data-action="print-select-none"]').addEventListener('click', printSelectNone);
+  document.querySelector('[data-action="do-print"]').addEventListener('click', doPrint);
+  document.getElementById('ptab-browse').addEventListener('click', () => switchPrintTab('browse'));
+  document.getElementById('ptab-search').addEventListener('click', () => switchPrintTab('search'));
+  document.getElementById('ptab-topic').addEventListener('click', () => switchPrintTab('topic'));
+  document.getElementById('print-category-filter').addEventListener('change', printFilterCategory);
+  document.querySelector('[data-action="print-quick-macro"]').addEventListener('click', () => printQuickSelect('Macroeconomics'));
+  document.querySelector('[data-action="print-quick-micro"]').addEventListener('click', () => printQuickSelect('Microeconomics'));
+  document.querySelector('[data-action="print-quick-intl"]').addEventListener('click', () => printQuickSelect('International Economics'));
+  document.getElementById('print-search-input').addEventListener('input', renderPrintSearch);
+  document.getElementById('print-topic-input').addEventListener('input', runPrintTopicSearch);
+  document.querySelector('[data-action="run-print-topic"]').addEventListener('click', runPrintTopicSearch);
+  document.getElementById('print-include-technical').addEventListener('change', updatePrintPreview);
+  document.getElementById('print-include-simple').addEventListener('change', updatePrintPreview);
+  document.getElementById('print-include-usage').addEventListener('change', updatePrintPreview);
+
+  // ── Print selectors delegation ──
+  initPrintDelegation();
+
+  // ── Print topic add-all ──
+  document.getElementById('print-topic-selector').addEventListener('click', e => {
+    if (e.target.closest('[data-print-add-all]'))
+      printTopicAddAll(document.getElementById('print-topic-selector')._notSelected || []);
+  });
+
+  } catch(err) {
+    console.error('initGlobalDelegation error:', err);
+  }
 }
 
 function buildAZNav() {
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const used = new Set(glossaryTerms.map(t => t.term[0].toUpperCase()));
   document.getElementById('az-nav').innerHTML = letters.map(l =>
-    `<a href="#letter-${l}" class="${used.has(l)?'has-terms':'no-terms'}" onclick="jumpToLetter(event,'${l}')">${l}</a>`
+    `<a href="#letter-${l}" class="${used.has(l)?'has-terms':'no-terms'}" data-letter="${l}">${l}</a>`
   ).join('');
 }
 
@@ -5806,7 +5936,7 @@ function initBackToTop() {
 function buildFilters() {
   const categories = ['All', ...new Set(glossaryTerms.map(t => t.category))].sort((a,b) => a==='All'?-1:a.localeCompare(b));
   document.getElementById('filter-row').innerHTML = categories.map(c =>
-    `<button class="filter-chip ${c==='All'?'active':''}" onclick="setCategory('${c}')">${c}</button>`
+    `<button class="filter-chip ${c==='All'?'active':''}" data-cat="${c}">${c}</button>`
   ).join('');
   document.getElementById('category-count').textContent = categories.length - 1;
 }
@@ -5876,10 +6006,10 @@ function renderGlossary() {
 
 function renderTermCard(t, i) {
   const relatedHtml = t.related.map(r => {
-    if (termExists(r)) return `<span class="related-tag" onclick="event.stopPropagation(); searchRelated('${r.replace(/'/g, "\\'")}')">${r}</span>`;
+    if (termExists(r)) return `<span class="related-tag" data-related="${r.replace(/"/g,'&quot;')}">${r}</span>`;
     return `<span class="related-tag missing-term" title="Term not yet in glossary">${r}</span>`;
   }).join('');
-  return `<div class="term-card" style="--i:${Math.min(i,15)}" onclick="toggleCard(this)">
+  return `<div class="term-card" style="--i:${Math.min(i,15)}" data-expand="true">
     <div class="term-header"><div class="term-title-area"><div class="term-letter">${t.term[0]}</div><div><div class="term-name">${highlightSearch(t.term)}</div><div class="term-category">${t.category}</div></div></div><div class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div>
     <div class="term-body">
       <div class="def-section"><div class="def-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Technical Definition</div><div class="def-text">${t.technical}</div></div>
@@ -5973,12 +6103,12 @@ let quizDefType = 'technical'; // 'technical' | 'simple' | 'both'
 let quizOrder = 'random';      // 'random' | 'sequential'
 
 function initTeacherMode() {
-  // Populate category filter (only on first init)
   const sel = document.getElementById('teacher-setup-cat');
   if (sel.options.length <= 1) {
     const cats = ['All', ...new Set(glossaryTerms.map(t => t.category))].sort((a,b) => a==='All'?-1:a.localeCompare(b));
     sel.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
   }
+  initSearchResultDelegation();
   teacherSearchTerms();
 }
 
@@ -6014,7 +6144,7 @@ function runTopicSearch() {
   const addedSet = new Set(teacherQueue.map(t => t.term));
   const notAdded = scored.filter(x => !addedSet.has(x.t.term));
   const addAllBtn = notAdded.length > 0
-    ? '<button class="setup-quick-btn" onclick="topicAddAll(' + JSON.stringify(notAdded.map(x => x.t.term)).replace(/"/g,'&quot;') + ')">Add all ' + notAdded.length + '</button>'
+    ? '<button class="setup-quick-btn" data-topic-add-all="true">Add all ' + notAdded.length + '</button>'
     : '<span style="font-size:13px;color:var(--success)">\u2713 All added</span>';
 
   let html = '<div class="topic-add-all-row">'
@@ -6024,61 +6154,87 @@ function runTopicSearch() {
 
   html += scored.map(x => renderSearchItem(x.t, addedSet.has(x.t.term))).join('');
   resultsEl.innerHTML = html;
+  resultsEl._notAdded = notAdded.map(x => x.t.term);
 }
 
 function topicAddAll(names) {
   names.forEach(name => teacherAddTerm(name));
   document.querySelectorAll('#topic-search-results .setup-search-item').forEach(el => {
-    const name = el.getAttribute('data-term');
-    if (name && names.includes(name)) {
+    if (names.includes(el.dataset.term)) {
       el.classList.add('already-added');
-      el.querySelector('.setup-search-item-add').innerHTML = '\u2713';
+      const btn = el.querySelector('.setup-search-item-add');
+      if (btn) btn.innerHTML = '\u2713';
     }
   });
   updateTopicAddAllRow();
 }
 
 function updateTopicAddAllRow() {
-  // Refresh the "Add all N" button count
-  const addedSet = new Set(teacherQueue.map(t => t.term));
-  const allItems = document.querySelectorAll('#topic-search-results .setup-search-item');
-  const notAdded = [...allItems].filter(el => !el.classList.contains('already-added'))
-    .map(el => el.querySelector('.setup-search-item-name')?.textContent).filter(Boolean);
   const row = document.querySelector('.topic-add-all-row');
   if (!row) return;
+  const allItems = [...document.querySelectorAll('#topic-search-results .setup-search-item')];
   const total = allItems.length;
+  const notAdded = allItems
+    .filter(el => !el.classList.contains('already-added'))
+    .map(el => el.dataset.term)
+    .filter(Boolean);
   const countEl = row.querySelector('.topic-result-count');
-  if (countEl) countEl.innerHTML = `<strong>${total}</strong> terms found${notAdded.length < total ? ` (${total - notAdded.length} already in queue)` : ''}`;
+  if (countEl) countEl.innerHTML = '<strong>' + total + '</strong> terms found' + (notAdded.length < total ? ' (' + (total - notAdded.length) + ' already in queue)' : '');
   const btnArea = row.querySelector('.setup-quick-btn, span[style]');
   if (btnArea) {
     if (notAdded.length > 0) {
-      btnArea.outerHTML = `<button class="setup-quick-btn" onclick="topicAddAll(${JSON.stringify(notAdded).replace(/"/g,'&quot;')})">Add all ${notAdded.length}</button>`;
+      const btn = document.createElement('button');
+      btn.className = 'setup-quick-btn';
+      btn.textContent = 'Add all ' + notAdded.length;
+      btn.onclick = () => topicAddAll(notAdded);
+      btnArea.replaceWith(btn);
     } else {
-      btnArea.outerHTML = `<span style="font-size:13px;color:var(--success)">✓ All added</span>`;
+      const span = document.createElement('span');
+      span.style.cssText = 'font-size:13px;color:var(--success)';
+      span.textContent = '\u2713 All added';
+      btnArea.replaceWith(span);
     }
   }
 }
 
 
 function renderSearchItem(t, added) {
-  const safeAttr = t.term.replace(/"/g, '&quot;');
-  const clickCard = added ? '' : "teacherAddFromItem(this)";
-  const clickBtn  = added ? '' : "event.stopPropagation();teacherAddFromItem(this.closest('.setup-search-item'))";
-  return '<div class="setup-search-item' + (added ? ' already-added' : '') + '" data-term="' + safeAttr + '" onclick="' + clickCard + '">'
+  const safeAttr = t.term.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  return '<div class="setup-search-item' + (added ? ' already-added' : '') + '" data-term="' + safeAttr + '">'
     + '<div>'
     + '<div class="setup-search-item-name">' + t.term + '</div>'
     + '<div class="setup-search-item-cat">' + t.category + '</div>'
     + '</div>'
-    + '<button class="setup-search-item-add" onclick="' + clickBtn + '">' + (added ? '\u2713' : '+') + '</button>'
+    + '<button class="setup-search-item-add">' + (added ? '\u2713' : '+') + '</button>'
     + '</div>';
 }
 
 function teacherAddFromItem(el) {
-  const name = el.getAttribute('data-term');
+  const item = el.closest ? el.closest('.setup-search-item') : el;
+  if (!item) return;
+  const name = item.dataset.term;
+  if (!name) return;
   teacherAddTerm(name);
-  el.classList.add('already-added');
-  el.querySelector('.setup-search-item-add').innerHTML = '\u2713';
+  item.classList.add('already-added');
+  const btn = item.querySelector('.setup-search-item-add');
+  if (btn) btn.innerHTML = '\u2713';
   updateTopicAddAllRow();
+}
+
+// Delegate clicks for teacher search results - handles both manual and topic panels
+function initSearchResultDelegation() {
+  ['teacher-search-results','topic-search-results'].forEach(id => {
+    const container = document.getElementById(id);
+    if (!container || container._delegated) return;
+    container._delegated = true;
+    container.addEventListener('click', function(e) {
+      const btn = e.target.closest('.setup-search-item-add');
+      const item = e.target.closest('.setup-search-item');
+      if (!item || item.classList.contains('already-added')) return;
+      e.stopPropagation();
+      teacherAddFromItem(item);
+    });
+  });
 }
 
 function teacherSearchTerms() {
@@ -6146,9 +6302,9 @@ function renderTeacherQueue() {
     hint.textContent = 'Add at least one term to launch';
   } else {
     container.innerHTML = teacherQueue.map(t =>
-      `<span class="setup-queue-tag">
+      `<span class="setup-queue-tag" data-term="${t.term.replace(/"/g,'&quot;')}">
         ${t.term}
-        <button class="setup-queue-remove" onclick="teacherRemoveTerm('${t.term.replace(/'/g, "\\'")}')">×</button>
+        <button class="setup-queue-remove" data-remove-term="${t.term.replace(/"/g,'&quot;')}">×</button>
       </span>`
     ).join('');
     launchBtn.disabled = false;
@@ -6159,7 +6315,8 @@ function renderTeacherQueue() {
 function setQuizDirection(dir) {
   quizDirection = dir;
   document.querySelectorAll('.setup-dir-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('dir-' + dir).classList.add('active');
+  const idMap = { term: 'dir-term', definition: 'dir-def', mixed: 'dir-mix' };
+  document.getElementById(idMap[dir]).classList.add('active');
 }
 
 function setDefType(type) {
@@ -6192,6 +6349,8 @@ function teacherLaunchQuiz() {
   // Switch to quiz phase
   document.getElementById('teacher-setup-phase').style.display = 'none';
   document.getElementById('teacher-quiz-phase').style.display = 'block';
+  document.getElementById('teacher-stage').style.display = 'block';
+  document.getElementById('teacher-end-screen').style.display = 'none';
 
   document.getElementById('quiz-total-num').textContent = teacherQuizDeck.length;
   showTeacherCard();
@@ -6296,64 +6455,18 @@ function teacherNextTerm() {
 }
 
 function teacherEndQuiz() {
-  document.getElementById('teacher-stage').innerHTML = `
-    <div style="padding:60px 40px;text-align:center">
-      <div style="font-size:48px;margin-bottom:16px">🎉</div>
-      <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:10px">Quiz Complete!</div>
-      <div style="font-size:15px;color:var(--text-muted);margin-bottom:28px">${teacherHistory.length} term${teacherHistory.length !== 1 ? 's' : ''} covered this session</div>
-      <button class="teacher-btn primary large" onclick="teacherBackToSetup()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        Back to Setup
-      </button>
-    </div>`;
+  document.getElementById('teacher-stage').style.display = 'none';
+  document.getElementById('teacher-history-wrap').style.display = 'none';
+  const endScreen = document.getElementById('teacher-end-screen');
+  document.getElementById('teacher-end-count').textContent =
+    teacherHistory.length + ' term' + (teacherHistory.length !== 1 ? 's' : '') + ' covered this session';
+  endScreen.style.display = 'block';
 }
 
 function teacherBackToSetup() {
   document.getElementById('teacher-setup-phase').style.display = 'block';
   document.getElementById('teacher-quiz-phase').style.display = 'none';
-  // Restore stage HTML if quiz ended
-  const stage = document.getElementById('teacher-stage');
-  if (!document.getElementById('teacher-term-card')) {
-    stage.innerHTML = `
-      <div class="teacher-term-card" id="teacher-term-card">
-        <div class="quiz-mode-pill" id="quiz-mode-pill">📖 Key Term</div>
-        <div class="teacher-term-category" id="teacher-term-category"></div>
-        <div class="teacher-term-name" id="teacher-term-name"></div>
-        <div class="teacher-prompt" id="teacher-prompt-text">Students: write your definition now…</div>
-        <div class="teacher-timer-bar"><div class="teacher-timer-fill" id="teacher-timer-fill"></div></div>
-      </div>
-      <div class="teacher-reveal-area" id="teacher-reveal-area" style="display:none">
-        <button class="teacher-reveal-btn" onclick="teacherReveal()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Reveal Answer
-        </button>
-      </div>
-      <div class="teacher-definition-reveal" id="teacher-definition-reveal" style="display:none">
-        <div class="reveal-answer-header" id="reveal-answer-header"></div>
-        <div class="teacher-def-block technical" id="reveal-tech-block">
-          <div class="teacher-def-label">📘 Technical Definition</div>
-          <div class="teacher-def-text" id="teacher-tech-def"></div>
-        </div>
-        <div class="teacher-def-block simple" id="reveal-simple-block">
-          <div class="teacher-def-label">💡 Simple Definition</div>
-          <div class="teacher-def-text" id="teacher-simple-def"></div>
-        </div>
-        <div class="teacher-def-related">
-          <div class="teacher-def-label">🔗 Related Terms</div>
-          <div class="teacher-related-tags" id="teacher-related-tags"></div>
-        </div>
-        <div class="teacher-next-row">
-          <button class="teacher-btn ghost" onclick="teacherBackToSetup()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            Back to setup
-          </button>
-          <button class="teacher-btn primary large" onclick="teacherNextTerm()" id="teacher-next-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-            Next Term
-          </button>
-        </div>
-      </div>`;
-  }
+  document.getElementById('teacher-end-screen').style.display = 'none';
   teacherSearchTerms();
 }
 
@@ -6377,6 +6490,7 @@ function initPrintMode() {
     const cats = ['All', ...new Set(glossaryTerms.map(t => t.category))].sort((a,b) => a==='All'?-1:a.localeCompare(b));
     sel.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
   }
+  initPrintDelegation();
   renderPrintSelector();
   updatePrintCount();
 }
@@ -6472,7 +6586,7 @@ function runPrintTopicSearch() {
 
   const notSelected = scored.filter(x => !printSelected.has(x.t.term));
   const addAllBtn = notSelected.length > 0
-    ? '<button class="setup-quick-btn" onclick="printTopicAddAll(' + JSON.stringify(notSelected.map(x => x.t.term)).replace(/"/g,'&quot;') + ')">Select all ' + notSelected.length + '</button>'
+    ? '<button class="setup-quick-btn" data-print-add-all="true">Select all ' + notSelected.length + '</button>'
     : '<span style="font-size:13px;color:var(--success)">\u2713 All selected</span>';
 
   let html = '<div class="topic-add-all-row">'
@@ -6482,6 +6596,7 @@ function runPrintTopicSearch() {
 
   html += scored.map(x => renderPrintItem(x.t)).join('');
   container.innerHTML = html;
+  container._notSelected = notSelected.map(x => x.t.term);
   updatePrintCount();
 }
 
@@ -6494,8 +6609,8 @@ function printTopicAddAll(names) {
 // ── Shared helpers ──
 function renderPrintItem(t) {
   const sel = printSelected.has(t.term);
-  const safeAttr = t.term.replace(/"/g, '&quot;');
-  return '<div class="print-term-item' + (sel ? ' selected' : '') + '" data-term="' + safeAttr + '" onclick="togglePrintTermEl(this)">'
+  const safeAttr = t.term.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  return '<div class="print-term-item' + (sel ? ' selected' : '') + '" data-term="' + safeAttr + '">'
     + '<div class="print-term-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>'
     + '<div class="print-term-info">'
     + '<div class="print-term-info-name">' + t.term + '</div>'
@@ -6503,23 +6618,33 @@ function renderPrintItem(t) {
     + '</div></div>';
 }
 
-function togglePrintTermEl(el) {
-  const name = el.getAttribute('data-term');
+function togglePrintTerm(el) {
+  const item = el.closest ? el.closest('.print-term-item') : el;
+  if (!item) return;
+  const name = item.dataset.term;
+  if (!name) return;
   if (printSelected.has(name)) {
     printSelected.delete(name);
+    item.classList.remove('selected');
   } else {
     printSelected.add(name);
+    item.classList.add('selected');
   }
-  // Re-render all visible panels so selected state stays consistent
-  if (document.getElementById('ppanel-browse').style.display !== 'none') renderPrintSelector();
-  if (document.getElementById('ppanel-search').style.display !== 'none') renderPrintSearch();
-  if (document.getElementById('ppanel-topic').style.display !== 'none') runPrintTopicSearch();
   updatePrintCount();
 }
 
-function togglePrintTerm(termName, el) {
-  // legacy shim — kept for any existing onclick refs
-  togglePrintTermEl(el);
+function togglePrintTermEl(el) { togglePrintTerm(el); }
+
+function initPrintDelegation() {
+  ['print-term-selector','print-search-selector','print-topic-selector'].forEach(id => {
+    const container = document.getElementById(id);
+    if (!container || container._delegated) return;
+    container._delegated = true;
+    container.addEventListener('click', function(e) {
+      const item = e.target.closest('.print-term-item');
+      if (item) togglePrintTerm(item);
+    });
+  });
 }
 
 function updatePrintCount() {
